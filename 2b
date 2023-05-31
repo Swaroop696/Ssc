@@ -1,0 +1,63 @@
+lex//)//)/////////
+
+%{
+
+#include"y.tab.h"
+
+%}
+
+%%
+
+a  return  A ;
+
+b  return  B ;
+
+.  return  yytext[0] ;
+
+\n  return  0 ;
+
+%%
+
+////////yacc//////)))
+
+%{
+
+#include<stdio.h>
+
+#include<stdlib.h>
+
+int yyerror();
+
+int yylex();
+
+%}
+
+%token A B;
+
+%%
+
+Y:S ;
+
+S:A S  B ;
+
+    |  ;
+
+%%
+
+int main(){
+
+printf("enter the string\n");
+
+if(!yyparse())
+
+printf("valid");
+
+}
+
+int yyerror(){
+
+printf("invalid");
+
+exit(0);
+
+}
